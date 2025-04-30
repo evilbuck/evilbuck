@@ -1,6 +1,6 @@
 👋 Hey, I’m Buckley Robinson
 
-Senior Full-Stack Engineer · Ruby on Rails · JavaScript · UX-Driven · Builder of Calm, Useful Things
+Senior Full-Stack Engineer · Ruby on Rails · JavaScript · UX-Driven · Builder of Useful Things
 
 ⸻
 
@@ -21,35 +21,35 @@ Current Interests: building small, stable systems; refactoring legacy code; ment
 🛒 Overhub (2020–2024)
 
 A commerce platform with integrated affiliate tracking, fulfillment, and analytics.
-	•	Solo-built in Rails + React
-	•	Drop-in storefront UI via Vue.js and Webflow integrations
-	•	Rules engine for dynamic payment routing
+• Solo-built in Rails + React
+• Drop-in storefront UI via Vue.js and Webflow integrations
+• Rules engine for dynamic payment routing
 
 📊 BrightBytes
 
 Data pipelines and scalable infrastructure for K–12 predictive analytics.
-	•	Machine learning pipelines and ETL processing
-	•	508-compliant dashboards, D3.js visualizations
-	•	Supported 20x user growth
+• Machine learning pipelines and ETL processing
+• 508-compliant dashboards, D3.js visualizations
+• Supported 20x user growth
 
 💌 VerticalResponse v2
 
 Refactored tracking and delivery systems during platform relaunch.
-	•	1000x backend scalability
-	•	Feature cut advocacy to keep v2 launch focused
+• 1000x backend scalability
+• Feature cut advocacy to keep v2 launch focused
 
 ⸻
 
 🧩 I’m a:
-	•	Generalist who can go deep when needed and get out when done
-	•	Mentor who enjoys helping others level up
-	•	Product thinker who ties technical work to business goals
+• Generalist who can go deep when needed and get out when done
+• Mentor who enjoys helping others level up
+• Product thinker who ties technical work to business goals
 
 ⸻
 
 📫 How to Reach Me
-	•	Email: buck@hey.com
-	•	GitHub: @evilbuck
-	•	LinkedIn: Buckley Robinson
+• Email: buck@hey.com
+• GitHub: @evilbuck
+• LinkedIn: Buckley Robinson
 
 Let’s build something meaningful.
