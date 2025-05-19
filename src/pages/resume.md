@@ -1,3 +1,8 @@
+**Buckley Robinson**
+buck@hey.com | [GitHub](https://github.com/evilbuck) | [LinkedIn](https://linkedin.com/in/evilbuck)
+
+---
+
 ### Summary
 
 Staff-level Full-Stack Engineer with 20+ years of experience building robust, elegant software products — often solo, often from scratch — across a number of application server platforms, including: Ruby on Rails, JavaScript frameworks, php, and cloud-native platforms.
@@ -117,7 +122,3 @@ Business goals always drive my work — clean code and elegant architecture natu
   - Assisted senior engineers with backend development and API integration tasks across travel and retail client projects.
 
 ---
-
-### Education
-
-Self-directed engineering education via bootstrapped product work, open-source contributions, and team leadership. Extensive experience in production systems, scaling strategies, and design collaboration.
