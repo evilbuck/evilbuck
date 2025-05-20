@@ -5,11 +5,11 @@ buck@hey.com | [GitHub](https://github.com/evilbuck) | [LinkedIn](https://linked
 
 ### Summary
 
-Staff-level Full-Stack Engineer with 20+ years of experience building robust, elegant software products — often solo, often from scratch — across a number of application server platforms, including: Ruby on Rails, JavaScript frameworks, php, and cloud-native platforms.
+**Staff-level Full-Stack Engineer and Engineering Leader** with 20+ years of experience delivering robust, scalable software across Ruby on Rails, JavaScript ecosystems, PHP, and cloud-native platforms. I’ve led architecture and development of complex backend systems, designed intuitive user experiences, and independently delivered products from ideation through launch.
 
-From crafting a commerce platform at Invative to architecting ML pipelines at BrightBytes, I focus on scalable backend systems, thoughtful UIs, and independent ownership.
+As an **engineering leader**, I've built and scaled high-performing engineering organizations, including a 40-person team at BrightBytes, where I coached managers, improved organizational processes, and drove strategic initiatives—such as reducing cloud infrastructure costs from $50K to $7K monthly.
 
-Business goals always drive my work — clean code and elegant architecture naturally follow when you're solving the right problems the right way.
+I thrive in roles combining deep technical execution and strategic leadership, always focusing first on business outcomes. Whether guiding cross-functional teams or owning full-stack feature development independently, my work consistently emphasizes clarity, elegance, and pragmatic problem-solving.
 
 ---
 
