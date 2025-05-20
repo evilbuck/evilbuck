@@ -3,7 +3,7 @@ buck@hey.com | [GitHub](https://github.com/evilbuck) | [LinkedIn](https://linked
 
 ---
 
-### Summary
+## Summary
 
 **Staff-level Full-Stack Engineer and Engineering Leader** with 20+ years of experience delivering robust, scalable software across Ruby on Rails, JavaScript ecosystems, PHP, and cloud-native platforms. I’ve led architecture and development of complex backend systems, designed intuitive user experiences, and independently delivered products from ideation through launch.
 
@@ -13,17 +13,17 @@ I thrive in roles combining deep technical execution and strategic leadership, a
 
 ---
 
-### Skills
+## Skills
 
-- **Languages & Frameworks:** Ruby, Rails, Node.js, Express, PHP, JavaScript (ES6+), React, Vue, Ember, Angular, TypeScript, CSS/SASS
-- **Architecture & Infra:** AWS, Docker, Redis, Postgres, MongoDB, Serverless (Lambda), CI/CD pipelines, Event-driven systems, State Machines, Rules Engines, REST, GraphQL
-- **Testing & DevOps:** RSpec, Capybara, Minitest, Mocha, Jest, Selenium, Cypress, GitHub Actions, CircleCI, TravisCI, AWS CodePipeline
 - **Leadership & Strategy:** Mentorship & coaching, Org design, OKRs, Cross-functional roadmapping, Cloud cost reduction, Onboarding programs
+- **Architecture & Infra:** AWS, Docker, Redis, Postgres, MongoDB, Serverless (Lambda), CI/CD pipelines, Event-driven systems, State Machines, Rules Engines, REST, GraphQL
+- **Languages & Frameworks:** Ruby, Rails, Node.js, Express, PHP, JavaScript (ES6+), React, Vue, Ember, Angular, TypeScript, CSS/SASS
+- **Testing & DevOps:** RSpec, Capybara, Minitest, Mocha, Jest, Selenium, Cypress, GitHub Actions, CircleCI, TravisCI, AWS CodePipeline
 - **UX & Product:** Reusable component systems, Hybrid mobile UX, Design collaboration, Browser extensions, Real-time dashboards
 
 ---
 
-### Work Experience
+## Work Experience
 
 **Invative Inc., Burbank, CA**
 
