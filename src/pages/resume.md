@@ -1,124 +1,108 @@
-**Buckley Robinson**
-buck@hey.com | [GitHub](https://github.com/evilbuck) | [LinkedIn](https://linkedin.com/in/evilbuck)
+# Buckley Robinson
+
+[buck@hey.com](mailto:buck@hey.com) | [GitHub](https://github.com/evilbuck) | [LinkedIn](https://linkedin.com/in/evilbuck)
 
 ---
 
 ## Summary
 
-**Staff-level Full-Stack Engineer and Engineering Leader** with 20+ years of experience delivering robust, scalable software across Ruby on Rails, JavaScript ecosystems, PHP, and cloud-native platforms. I’ve led architecture and development of complex backend systems, designed intuitive user experiences, and independently delivered products from ideation through launch.
+**Staff/Lead Engineer with 20+ years of experience** in system architecture, problem solving, and building resilient, scalable platforms. Proven record of architecting multi-tenant systems, scaling pipelines ×1000, and cutting cloud costs by 86% while improving stability and delivery velocity. Recent work includes hands-on **AI/LLM integration** and architecting AI-driven products. Recognized for translating business needs into technical strategy and mentoring engineers while driving pragmatic solutions under constraints.
 
-As an **engineering leader**, I've built and scaled high-performing engineering organizations, including a 40-person team at BrightBytes, where I coached managers, improved organizational processes, and drove strategic initiatives—such as reducing cloud infrastructure costs from $50K to $7K monthly.
+## Summary
 
-I thrive in roles combining deep technical execution and strategic leadership, always focusing first on business outcomes. Whether guiding cross-functional teams or owning full-stack feature development independently, my work consistently emphasizes clarity, elegance, and pragmatic problem-solving.
+**Staff/Lead Engineer with 20+ years of experience** delivering scalable software, distributed systems, and high-performing engineering organizations. Expert at bridging deep IC execution with strategic leadership. Proven track record in **architecting multi-tenant platforms, cutting cloud costs by 86%, scaling pipelines ×1000, and mentoring engineers into leadership roles.**
 
 ---
 
 ## Skills
 
-- **Leadership & Strategy:** Mentorship & coaching, Org design, OKRs, Cross-functional roadmapping, Cloud cost reduction, Onboarding programs
-- **Architecture & Infra:** AWS, Docker, Redis, Postgres, MongoDB, Serverless (Lambda), CI/CD pipelines, Event-driven systems, State Machines, Rules Engines, REST, GraphQL
-- **Languages & Frameworks:** Ruby, Rails, Node.js, Express, PHP, JavaScript (ES6+), React, Vue, Ember, Angular, TypeScript, CSS/SASS
-- **Testing & DevOps:** RSpec, Capybara, Minitest, Mocha, Jest, Selenium, Cypress, GitHub Actions, CircleCI, TravisCI, AWS CodePipeline
-- **UX & Product:** Reusable component systems, Hybrid mobile UX, Design collaboration, Browser extensions, Real-time dashboards
+- **Systems & Architecture** — Diagnose and restructure complex or legacy systems by documenting structure, identifying weaknesses, and iteratively improving design. Balance scalability, resilience, and efficiency to meet evolving business goals.
+- **Problem Solving** — Adaptable approach to ambiguity: prototype quickly when learning is key, analyze deeply when mistakes are costly. Known for delivering solutions under tight constraints.
+- **Technical Leadership** — Translate business needs into clear technical direction and strategy. Drive architectural decisions and provide iterative growth plans for teams and systems.
+- **Business Impact Through Engineering** — Proven ability to reduce cloud costs, increase delivery velocity, and improve product quality and stability through technical innovation.
+- **AI & Modern Development** — Hands-on experience integrating LLMs, architecting AI-driven products, and applying AI to improve developer workflows.
+
+### Obligatory Tooling List
+
+This is not exhaustive.
+
+- **Languages & Frameworks:** Ruby, Rails, Node.js, PHP, JavaScript (ES6+), React, Vue, Ember, Angular, TypeScript, Next.js, Astro, Laravel, Python, Django, feathersjs, Next.js,
+- **Cloud & Infra:** AWS, Azure, Docker, Terraform, Redis, Postgres, MongoDB, Serverless (Lambda), CI/CD, MySQL/Maria, Metal
+- **DevOps & Testing:** GitHub Actions, CircleCI, Selenium, Cypress, RSpec, MiniTest, Capybara, Jest
 
 ---
 
 ## Work Experience
 
-**Invative Inc., Burbank, CA**
+### Independent Consulting & AI Research — Consultant
 
-- **Staff Engineer** (Aug 2019 – May 2024)
-  - Architected and delivered **Overhub**, a multi-tenant commerce platform enabling dynamic storefronts, affiliate tracking, and adaptive compliance workflows—led full-stack execution across web, mobile, and backend services.
-  - Built a **modular state machine system** to orchestrate complex order lifecycles and transaction flows, supporting real-time decisioning.
-  - Created a **JavaScript storefront SDK** for rapid front-end deployments via Webflow, enabling non-dev teams to build and style custom UIs.
-  - Designed and implemented a **React-based admin dashboard**, supporting real-time analytics, customer support tooling, and fulfillment tracking.
-  - Developed a **low-latency rules engine** for intelligent payment routing, increasing revenue quality and fraud resilience.
-  - Owned feature development end-to-end, collaborating with CTO, PMs, and designers to align infrastructure with UX goals.
+_May 2024 – Present_
 
-**BrightBytes, San Francisco, CA**
+- Delivered contract work for multiple clients, refactoring legacy authentication systems (OAuth2, Django) and building modern web applications in Ruby, PHP, Vue, and React.
+- Conducted a deep technical dive into **AI/LLM integration**, including model orchestration, embedding pipelines, and applied use of LLMs for product development and developer productivity.
+- Provided strategy and implementation support for affiliate tracking and digital marketing infrastructure.
 
-- **Director of Engineering** (Nov 2018 – Mar 2019)
+### Invative Inc. — Staff Engineer
 
-  - Led a 40-person engineering org across 5 teams with 5 direct-report managers and 2 consultant agencies.
-  - Created a career framework for managers, with multiple reports advancing to Director and VP roles.
-  - Spearheaded a cloud cost-reduction initiative: $50K → $7K/month in 6 months.
+_Aug 2019 – May 2024, Burbank, CA_
 
-- **Engineering Manager** (May 2016 – Nov 2018)
-
-  - Designed and rolled out a multi-tier hiring & onboarding strategy, enabling team growth under budget constraints.
-  - Instituted OKRs for engineering, improving delivery predictability and cross-functional transparency.
-  - Implemented Basecamp for inter-team project coordination.
-
-- **Senior Engineer** (Nov 2013 – May 2016)
-  - Owned delivery of the company’s highest-availability data ingestion service, powering 75%+ of data.
-  - Partnered with designers to evolve internal UI components; contributed to consistency via D3.js + Angular visualization systems.
-
-**VerticalResponse, San Francisco, CA**
-
-- **Senior Software Engineer** (Jun 2012 – Nov 2013)
-  - Scaled email-tracking backend throughput 1000× via architectural redesign.
-  - Built a server-rotation system for email deliverability and reputation management.
-  - Led a monolith-to-SPA rewrite using Ember.js; mentored frontend engineers on modern JS practices.
-  - Developed internal UI library and first cross-product style guide.
-
-**Adpeak Inc., Sarasota, FL**
-
-- **Chief Technical Officer** (Apr 2011 – Jun 2012)
-
-  - Built and scaled high-traffic browser extensions (Chrome, Firefox, IE) for deal discovery, media conversion, and social tooling.
-  - Served 250M+ daily impressions via a custom ad-serving and tracking infrastructure.
-  - Developed rules-based content targeting with user-defined personalization.
-
-- **Lead Engineer** (Aug 2010 – Apr 2011)
-  - Mentored engineers, formalized onboarding, and collaborated closely with design/product teams.
-  - Supervised migration of legacy extension codebase to modern JS frameworks.
-
-**C2B, Sarasota, FL**
-
-- **Consultant (Owner)** (Jun 2010 – Jan 2011)
-  - Built extensions including GitHub PR tools, Trello list filters, and YouTube audio/video downloaders.
-  - Engineered hot-reloading system for Chrome extensions.
-  - Delivered full-stack solutions across ad tech, IoT, and CMS tooling.
-
-**Clickbooth.com, Sarasota, FL**
-
-- **Technical Business Analyst** (Feb 2010 – Jun 2010)
-
-  - Led rebuild of CPA publisher dashboard and built compliance automation tools.
-  - Acted as a bridge between product stakeholders, designers, and engineering teams to translate business requirements into scalable technical solutions.
-  - Led UX efforts for publisher-facing tools, improving campaign visibility, partner engagement, and platform usability.
-
-- **Lead Engineer** (Oct 2009 – Feb 2010)
-
-  - Rebuilt the publisher dashboard for a high-volume CPA network using PHP and jQuery, enhancing performance, usability, and reporting capabilities.
-  - Engineered ad compliance tools using PHP and JavaScript to automate policy checks, reducing manual review cycles and accelerating approvals.
-  - Developed automated testing suites with Selenium and a custom PHP-based framework to validate frontend and backend ad-serving functionality.
-  - Created the company’s first design and CSS style guide, establishing visual consistency and scalable frontend patterns.
-
-- **Senior Software Engineer** (Feb 2008 – Oct 2009)
-  - Contributed to early-stage development of Clickbooth’s internal publisher and advertiser platforms.
-  - Supported backend feature development and frontend optimization efforts across high-traffic campaign management tools.
-
-**Sungrazer Inc., West Palm Beach, FL**
-
-- **Program Manager** (Jan 2007 – Jul 2007)
-
-  - Managed government client relationships, overseeing project timelines, software development schedules, and stakeholder expectations.
-  - Coordinated internal engineering resources and external partners to ensure successful delivery of travel and information systems projects.
-  - Directed UX and product delivery initiatives to align client needs with functional software outcomes.
-  - Delivered real-time travel portals and public-sector web platforms.
-
-- **Software Engineer** (Aug 2005 – Jan 2007)
-
-  - Built a web-based point-of-sale system using classic ASP and JavaScript, deployed across retail environments with unified UI conventions and performance optimization.
-  - Led UI/UX design efforts across the company, authoring internal style guidelines and establishing consistent design patterns across applications.
-  - Led development of Palm Beach County’s Travel Portal using a custom XML API, PHP, and Prototype.js, enabling real-time travel information and public engagement.
-  - Engineered SOAP-based interfaces in PHP to expose CeresOne’s business logic to third parties, powering both external clients and internal applications.
-  - Delivered full-stack CMS integrations and user experiences for public- and partner-facing platforms using Joomla, WordPress, and Drupal.
-  - Developed CMS and SOAP-based API integrations for municipal clients.
-
-- **Junior Engineer** (Aug 2003 – Aug 2005)
-  - Contributed to internal tool development and early-stage CMS customization projects using PHP and classic ASP.
-  - Assisted senior engineers with backend development and API integration tasks across travel and retail client projects.
+- Architected and delivered **Overhub**, a multi-tenant commerce platform handling **100K+ monthly transactions** with <200ms latency.
+- Built modular state machine workflows orchestrating order lifecycles and intelligent payment routing.
+- Built a React-based admin dashboard with real-time analytics, fulfillment, and support tooling.
+- Created a JavaScript SDK enabling non-dev teams to deploy storefronts via Webflow.
+- Result: increased platform adoption by **40%** and improved revenue quality with fraud-resistant routing.
 
 ---
+
+### BrightBytes — Director / Engineering Manager / Senior Engineer
+
+_Nov 2013 – Mar 2019, San Francisco, CA_
+
+- Directed a **40-person org across 5 teams**, mentoring 5 managers (several promoted to Director/VP).
+- Cut AWS spend **86% ($50K → $7K/month)** in 6 months via architecture redesign.
+- Implemented org-wide OKRs, improving delivery predictability by **30%** and stakeholder alignment.
+- Led development of high-availability ingestion pipelines powering **75%+ of analytics**.
+- Partnered with designers to create reusable D3.js + Angular visualization systems.
+
+---
+
+### VerticalResponse — Senior Software Engineer
+
+_Jun 2012 – Nov 2013, San Francisco, CA_
+
+- Scaled email-tracking backend throughput **1000×** through architectural redesign.
+- Built rotation system for email deliverability, improving sender reputation scores.
+- Led monolith-to-SPA migration using Ember.js; mentored frontend engineers on modern JS.
+- Developed internal UI library and first cross-product style guide.
+
+---
+
+### Adpeak Inc. — CTO / Lead Engineer
+
+_Aug 2010 – Jun 2012, Sarasota, FL_
+
+- Built and scaled browser extensions serving **250M+ daily impressions**.
+- Developed ad-serving and personalization infrastructure with rules-based targeting.
+- Scaled team from 1 → 6; implemented onboarding and mentorship programs.
+- Defined cloud strategy, platform architecture, and frontend frameworks.
+
+---
+
+### Clickbooth.com (Perform\[cb]) — Senior → Lead Engineer → Technical Analyst
+
+_Feb 2008 – Jun 2010, Sarasota, FL_
+
+- Rebuilt CPA publisher dashboard, improving reporting and UX for 1000s of affiliates.
+- Automated compliance tools, cutting manual review cycles by **60%**.
+- Acted as liaison between product and engineering; translated business needs into scalable systems.
+- Authored company’s first design system and frontend style guide.
+
+---
+
+### Early Career — Sungrazer, C2B, Freelance
+
+_2003 – 2007, West Palm Beach & Sarasota, FL_
+
+- Managed delivery of municipal and government portals, including Palm Beach County travel systems.
+- Built SOAP-based APIs, CMS integrations, and public-facing platforms.
+- Roles included Program Manager, Software Engineer, and Consultant.

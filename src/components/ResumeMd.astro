@@ -4,17 +4,17 @@ const { Content } = await import('../pages/resume.md');
 ---
 
 <main class="container mx-auto px-4 py-12 max-w-4xl">
-  <header class="mb-16 flex items-center gap-8">
+  <header class="header-section">
     <img
       src={resumeData.profileImage}
       alt={resumeData.name}
-      class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
+      class="profile-image"
     />
     <div>
-      <h1 class="text-5xl font-bold text-gray-900 mb-4">{resumeData.name}</h1>
-      <div class="flex flex-wrap gap-6 text-lg text-gray-600">
-        <a href={resumeData.links.github} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">GitHub</a>
-        <a href={resumeData.links.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">LinkedIn</a>
+      <h1 class="profile-name">{resumeData.name}</h1>
+      <div class="profile-links">
+        <a href={resumeData.links.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href={resumeData.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
   </header>
@@ -24,6 +24,49 @@ const { Content } = await import('../pages/resume.md');
 </main>
 
 <style>
+  .header-section {
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .profile-image {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid hsl(var(--border));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .profile-name {
+    font-size: 3rem;
+    font-weight: 700;
+    color: hsl(var(--foreground));
+    margin-bottom: 1rem;
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.1;
+  }
+
+  .profile-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  .profile-links a {
+    color: hsl(var(--muted-foreground));
+    text-decoration: none;
+    transition: var(--transition-smooth);
+  }
+
+  .profile-links a:hover {
+    color: hsl(var(--accent));
+    text-decoration: underline;
+  }
+
   .resume-content {
     max-width: 800px;
     margin: 0 auto;
@@ -32,27 +75,60 @@ const { Content } = await import('../pages/resume.md');
 
   .resume-content :global(hr) {
     border: none;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid hsl(var(--border));
     margin: 2rem 0;
   }
 
+  .resume-content :global(h1) {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: hsl(var(--foreground));
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    font-family: 'Lora', Georgia, serif;
+  }
+
+  .resume-content :global(h2) {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: hsl(var(--foreground));
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+    font-family: 'Lora', Georgia, serif;
+  }
+
   .resume-content :global(h3) {
-    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: hsl(0 0% 20%);
     margin-top: 2rem;
     margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .resume-content :global(p) {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: hsl(0 0% 15%);
   }
 
   .resume-content :global(ul) {
     padding-left: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .resume-content :global(li) {
     margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: hsl(0 0% 15%);
   }
 
   .resume-content :global(a) {
-    color: #0066cc;
+    color: hsl(var(--accent));
     text-decoration: none;
+    transition: var(--transition-smooth);
   }
 
   .resume-content :global(a:hover) {
@@ -60,6 +136,12 @@ const { Content } = await import('../pages/resume.md');
   }
 
   .resume-content :global(strong) {
-    color: #222;
+    color: hsl(var(--foreground));
+    font-weight: 600;
+  }
+
+  .resume-content :global(em) {
+    color: hsl(var(--muted-foreground));
+    font-style: italic;
   }
 </style>
