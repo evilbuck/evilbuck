@@ -7,7 +7,10 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{Astro.props.title}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
   </head>
   <body>
     <slot />
@@ -16,15 +19,21 @@
 
 <style is:global>
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 12%;
+    --background: 32 60% 96%;
+    --surface: 32 48% 98%;
+    --foreground: 24 32% 18%;
+    --subtle: 27 24% 35%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 30 28% 90%;
+    --muted-foreground: 23 16% 45%;
 
-    --border: 0 0% 88%;
+    --border: 28 20% 80%;
 
-    --accent: 215 100% 40%;
+    --accent: 18 68% 52%;
+    --accent-soft: 18 80% 94%;
+
+    --font-serif: 'Source Serif 4', 'Iowan Old Style', 'Palatino', serif;
+    --font-sans: 'Work Sans', 'Inter', 'Helvetica Neue', sans-serif;
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -36,12 +45,38 @@
   }
 
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-serif);
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sans);
+    color: hsl(var(--foreground));
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: hsl(var(--accent));
+    text-decoration-color: hsla(var(--accent), 0.4);
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover {
+    text-decoration-color: hsl(var(--accent));
+  }
+
+  body::selection {
+    background-color: hsl(var(--accent-soft));
   }
 
   html {
