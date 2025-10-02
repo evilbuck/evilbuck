@@ -1,0 +1,339 @@
+---
+import FileTree from './FileTree.astro';
+import CodeViewer from './CodeViewer.astro';
+import { readCodeFile } from '../utils/discoverCodeSamples';
+
+interface Props {
+  project: {
+    id: string;
+    title: string;
+    fileTree: any[];
+    featured?: string[];
+  };
+}
+
+const { project } = Astro.props;
+
+// Get all files from tree recursively
+function getAllFiles(tree: any[]): string[] {
+  const files: string[] = [];
+
+  for (const node of tree) {
+    if (node.type === 'file') {
+      files.push(node.path);
+    }
+    if (node.type === 'folder' && node.children) {
+      files.push(...getAllFiles(node.children));
+    }
+  }
+
+  return files;
+}
+
+const allFilePaths = getAllFiles(project.fileTree);
+
+// Load ALL file contents at build time
+const allFileContents: Record<string, { content: string; extension: string; name: string }> = {};
+
+for (const filePath of allFilePaths) {
+  const content = readCodeFile(project.id, filePath);
+  if (content) {
+    const fileName = filePath.split('/').pop() || '';
+    const ext = fileName.split('.').pop() || '';
+
+    allFileContents[filePath] = {
+      content,
+      extension: ext,
+      name: fileName,
+    };
+  }
+}
+
+// Get featured files or default to first few code files
+const featuredFiles = project.featured?.length
+  ? project.featured
+  : allFilePaths.filter(p => !p.endsWith('.md')).slice(0, 3);
+
+// Default to first file if no featured files
+const defaultFilePath = featuredFiles[0] || allFilePaths[0];
+const defaultFile = defaultFilePath ? allFileContents[defaultFilePath] : null;
+---
+
+<div class="code-browser" data-project-id={project.id}>
+  <div class="browser-layout">
+    <aside class="browser-sidebar">
+      <FileTree tree={project.fileTree} projectId={project.id} />
+    </aside>
+
+    <main class="browser-main">
+      <div class="viewer-container" id={`viewer-${project.id}`}>
+        {
+          defaultFile ? (
+            <div class="code-viewer-wrapper" data-file-path={defaultFilePath}>
+              <CodeViewer
+                code={defaultFile.content}
+                lang={defaultFile.extension}
+                filename={defaultFile.name}
+              />
+            </div>
+          ) : (
+            <div class="empty-state">
+              <p>Select a file from the sidebar to view its contents</p>
+            </div>
+          )
+        }
+      </div>
+    </main>
+  </div>
+
+  <!-- Pre-load all file contents as JSON for client-side access -->
+  <script type="application/json" id={`files-${project.id}`} data-project-id={project.id}>
+    {JSON.stringify(allFileContents)}
+  </script>
+</div>
+
+<style>
+  .code-browser {
+    background: hsl(var(--background));
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 12px 40px rgba(36, 24, 18, 0.12);
+  }
+
+  .browser-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 500px;
+    max-height: 700px;
+  }
+
+  .browser-sidebar {
+    background: hsl(var(--surface));
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .browser-main {
+    background: hsl(var(--background));
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .viewer-container {
+    flex: 1;
+    overflow: auto;
+    padding: 1.5rem;
+  }
+
+  .code-viewer-wrapper {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: hsl(var(--muted-foreground));
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+  }
+
+  /* Loading state */
+  .viewer-container.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .viewer-container.loading::after {
+    content: 'Loading...';
+    color: hsl(var(--muted-foreground));
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+  }
+
+  /* Scrollbar styling */
+  .viewer-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .viewer-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .viewer-container::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 5px;
+  }
+
+  .viewer-container::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Responsive layout */
+  @media (max-width: 1024px) {
+    .browser-layout {
+      grid-template-columns: 240px 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .browser-layout {
+      grid-template-columns: 1fr;
+      max-height: 600px;
+    }
+
+    .browser-sidebar {
+      max-height: 200px;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .viewer-container {
+      padding: 1rem;
+    }
+  }
+</style>
+
+<script>
+  declare const hljs: any;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const browsers = document.querySelectorAll('.code-browser');
+
+    browsers.forEach((browser) => {
+      const projectId = browser.getAttribute('data-project-id');
+      const viewerContainer = browser.querySelector('.viewer-container');
+
+      if (!projectId || !viewerContainer) return;
+
+      const filesScript = document.getElementById(`files-${projectId}`);
+      if (!filesScript) {
+        console.error('File contents not found for project:', projectId);
+        return;
+      }
+
+      const allFiles = JSON.parse(filesScript.textContent || '{}');
+
+      browser.addEventListener('file-selected', (event: Event) => {
+        const customEvent = event as CustomEvent;
+        const { filePath, fileName, extension } = customEvent.detail;
+
+        viewerContainer.classList.add('loading');
+
+        setTimeout(() => {
+          try {
+            const fileData = allFiles[filePath];
+            if (!fileData) {
+              throw new Error(`File not found: ${filePath}`);
+            }
+
+            const { content } = fileData;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-viewer-wrapper';
+            wrapper.setAttribute('data-file-path', filePath);
+
+            // This structure mirrors CodeViewer.astro but is for client-side rendering
+            wrapper.innerHTML = `
+              <div class="code-viewer">
+                <div class="code-header">
+                  <span class="filename">${escapeHtml(fileName)}</span>
+                  <button class="copy-btn" aria-label="Copy code">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span class="copy-text">Copy</span>
+                  </button>
+                </div>
+                <div class="code-content">
+                  <pre><code class="language-${extension}">${escapeHtml(content)}</code></pre>
+                </div>
+              </div>
+            `;
+            
+            const copyBtn = wrapper.querySelector('.copy-btn');
+            if(copyBtn) {
+              copyBtn.setAttribute('data-code', content);
+            }
+
+            viewerContainer.innerHTML = '';
+            viewerContainer.appendChild(wrapper);
+
+            // Apply syntax highlighting
+            const codeBlock = wrapper.querySelector('code');
+            if (codeBlock && typeof hljs !== 'undefined') {
+              hljs.highlightElement(codeBlock);
+            }
+
+            attachCopyListeners(viewerContainer);
+          } catch (error) {
+            console.error('Failed to load file:', error);
+            viewerContainer.innerHTML = `
+              <div class="empty-state">
+                <p>Failed to load file: ${escapeHtml(String(error))}</p>
+              </div>
+            `;
+          } finally {
+            viewerContainer.classList.remove('loading');
+          }
+        }, 100); // Simulate loading
+      });
+    });
+
+    function escapeHtml(text: string): string {
+      const map: Record<string, string> = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;',
+      };
+      return text.replace(/[&<>"']/g, (m) => map[m]);
+    }
+
+    function attachCopyListeners(container: Element) {
+      const copyButtons = container.querySelectorAll('.copy-btn');
+      copyButtons.forEach((btn) => {
+        // Prevent multiple listeners
+        if ((btn as any).listenerAttached) return;
+        (btn as any).listenerAttached = true;
+
+        btn.addEventListener('click', async () => {
+          const code = btn.getAttribute('data-code');
+          if (!code) return;
+
+          try {
+            await navigator.clipboard.writeText(code);
+            const textSpan = btn.querySelector('.copy-text');
+            if (textSpan) {
+              const originalText = textSpan.textContent;
+              textSpan.textContent = 'Copied!';
+              setTimeout(() => {
+                textSpan.textContent = originalText;
+              }, 2000);
+            }
+          } catch (err) {
+            console.error('Failed to copy code:', err);
+          }
+        });
+      });
+    }
+  });
+</script>

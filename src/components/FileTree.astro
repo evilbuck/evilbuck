@@ -1,0 +1,287 @@
+---
+interface FileNode {
+  type: 'file' | 'folder';
+  name: string;
+  path: string;
+  extension?: string;
+  children?: FileNode[];
+}
+
+interface Props {
+  tree: FileNode[];
+  projectId: string;
+  onFileSelect?: string;
+}
+
+const { tree, projectId, onFileSelect } = Astro.props;
+---
+
+<nav class="file-tree" aria-label="File navigation" data-project-id={projectId}>
+  <div class="tree-header">
+    <span class="tree-icon">📂</span>
+    <span class="tree-title">{projectId}</span>
+  </div>
+  <div class="tree-content" id={`tree-${projectId}`}>
+    <!-- Tree will be rendered by JavaScript -->
+  </div>
+
+  <!-- Store tree data for JavaScript rendering -->
+  <script type="application/json" id={`tree-data-${projectId}`}>
+    {JSON.stringify(tree)}
+  </script>
+</nav>
+
+<style>
+  .file-tree {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: hsl(var(--surface));
+    border-right: 1px solid hsl(var(--border));
+  }
+
+  .tree-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid hsl(var(--border));
+    background: hsl(var(--muted) / 0.2);
+  }
+
+  .tree-icon {
+    font-size: 1.1rem;
+  }
+
+  .tree-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: hsl(var(--foreground));
+  }
+
+  .tree-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+  }
+
+  /* Scrollbar styling */
+  .tree-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .tree-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .tree-content::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  .tree-content::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Folder styles */
+  :global(.folder-item) {
+    user-select: none;
+  }
+
+  :global(.folder-summary) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    list-style: none;
+    transition: var(--transition-smooth);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: hsl(var(--subtle));
+  }
+
+  :global(.folder-summary::-webkit-details-marker) {
+    display: none;
+  }
+
+  :global(.folder-summary:hover) {
+    background: hsl(var(--muted) / 0.4);
+  }
+
+  :global(.folder-icon) {
+    font-size: 0.9rem;
+    transition: transform 0.2s ease;
+  }
+
+  :global(.folder-item[open] > .folder-summary .folder-icon) {
+    transform: rotate(0deg);
+  }
+
+  :global(.folder-item:not([open]) > .folder-summary .folder-icon) {
+    transform: rotate(-90deg);
+  }
+
+  :global(.folder-name) {
+    font-weight: 500;
+  }
+
+  :global(.folder-content) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* File styles */
+  :global(.file-item) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: hsl(var(--subtle));
+    text-align: left;
+  }
+
+  :global(.file-item:hover) {
+    background: hsl(var(--accent-soft));
+    color: hsl(var(--accent));
+  }
+
+  :global(.file-item.active) {
+    background: hsl(var(--accent-soft));
+    color: hsl(var(--accent));
+    font-weight: 500;
+  }
+
+  :global(.file-icon) {
+    font-size: 0.9rem;
+  }
+
+  :global(.file-name) {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .tree-header {
+      padding: 0.75rem;
+    }
+
+    :global(.folder-summary),
+    :global(.file-item) {
+      padding: 0.6rem;
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+<script>
+  // Get file icon based on extension
+  function getFileIcon(extension?: string): string {
+    const icons: Record<string, string> = {
+      js: '📄',
+      jsx: '⚛️',
+      ts: '📘',
+      tsx: '⚛️',
+      vue: '💚',
+      json: '📋',
+      md: '📝',
+      css: '🎨',
+      scss: '🎨',
+    };
+    return icons[extension || ''] || '📄';
+  }
+
+  // Render tree node recursively
+  function renderNode(node: any, projectId: string, level: number = 0): string {
+    const indent = level * 1.25;
+
+    if (node.type === 'folder') {
+      const childrenHtml = (node.children || [])
+        .map((child: any) => renderNode(child, projectId, level + 1))
+        .join('');
+
+      return `
+        <details class="folder-item" ${level === 0 ? 'open' : ''}>
+          <summary class="folder-summary" style="padding-left: ${indent}rem">
+            <span class="folder-icon">📁</span>
+            <span class="folder-name">${node.name}</span>
+          </summary>
+          <div class="folder-content">
+            ${childrenHtml}
+          </div>
+        </details>
+      `;
+    }
+
+    return `
+      <button
+        class="file-item"
+        style="padding-left: ${indent + 0.5}rem"
+        data-project-id="${projectId}"
+        data-file-path="${node.path}"
+        data-file-name="${node.name}"
+        data-extension="${node.extension || ''}"
+      >
+        <span class="file-icon">${getFileIcon(node.extension)}</span>
+        <span class="file-name">${node.name}</span>
+      </button>
+    `;
+  }
+
+  // Render tree on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const fileTrees = document.querySelectorAll('.file-tree');
+
+    fileTrees.forEach((tree) => {
+      const projectId = tree.getAttribute('data-project-id');
+      if (!projectId) return;
+
+      const dataScript = document.getElementById(`tree-data-${projectId}`);
+      const contentDiv = document.getElementById(`tree-${projectId}`);
+
+      if (!dataScript || !contentDiv) return;
+
+      const treeData = JSON.parse(dataScript.textContent || '[]');
+
+      // Render all nodes
+      const html = treeData.map((node) => renderNode(node, projectId, 0)).join('');
+      contentDiv.innerHTML = html;
+
+      // Use event delegation for click handling
+      contentDiv.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const fileItem = target.closest('.file-item');
+
+        if (fileItem) {
+          // Remove active state from all other items
+          contentDiv.querySelectorAll('.file-item').forEach((i) => i.classList.remove('active'));
+          // Add active state to clicked item
+          fileItem.classList.add('active');
+
+          // Dispatch custom event with file info
+          const event = new CustomEvent('file-selected', {
+            detail: {
+              projectId: fileItem.getAttribute('data-project-id'),
+              filePath: fileItem.getAttribute('data-file-path'),
+              fileName: fileItem.getAttribute('data-file-name'),
+              extension: fileItem.getAttribute('data-extension'),
+            },
+            bubbles: true,
+            composed: true, // Important for events crossing shadow DOM boundaries if ever needed
+          });
+          fileItem.dispatchEvent(event);
+        }
+      });
+    });
+  });
+</script>

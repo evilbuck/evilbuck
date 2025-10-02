@@ -1,0 +1,191 @@
+---
+import { Code } from 'astro:components';
+
+interface Props {
+  code: string;
+  lang: string;
+  filename?: string;
+  highlights?: number[];
+  showLineNumbers?: boolean;
+}
+
+const {
+  code,
+  lang,
+  filename,
+  highlights = [],
+  showLineNumbers = true
+} = Astro.props;
+
+// Map file extensions to Shiki language identifiers
+const langMap: Record<string, string> = {
+  js: 'javascript',
+  jsx: 'javascript',
+  ts: 'typescript',
+  tsx: 'typescript',
+  vue: 'vue',
+  md: 'markdown',
+  json: 'json',
+  css: 'css',
+  scss: 'scss',
+};
+
+const shikiLang = langMap[lang] || lang || 'javascript';
+---
+
+<div class="code-viewer">
+  {filename && (
+    <div class="code-header">
+      <span class="filename">{filename}</span>
+      <button class="copy-btn" data-code={code} aria-label="Copy code">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span class="copy-text">Copy</span>
+      </button>
+    </div>
+  )}
+  <div class="code-content">
+    <Code code={code} lang={shikiLang} theme="github-light" />
+  </div>
+</div>
+
+<style>
+  .code-viewer {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--surface));
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: hsl(var(--muted) / 0.3);
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .filename {
+    font-family: 'Source Code Pro', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: hsl(var(--subtle));
+    font-weight: 500;
+  }
+
+  .copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    background: transparent;
+    border: 1px solid hsl(var(--border));
+    border-radius: 6px;
+    color: hsl(var(--subtle));
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+
+  .copy-btn:hover {
+    background: hsl(var(--accent-soft));
+    border-color: hsl(var(--accent) / 0.3);
+    color: hsl(var(--accent));
+  }
+
+  .copy-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .code-content {
+    overflow-x: auto;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+
+  .code-content :global(pre) {
+    margin: 0 !important;
+    padding: 1.25rem !important;
+    background: transparent !important;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .code-content :global(code) {
+    font-family: 'Source Code Pro', 'Fira Code', 'Courier New', monospace;
+    counter-reset: line;
+  }
+
+  /* Line numbers */
+  .code-content :global(.line) {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .code-content :global(.line::before) {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 2.5rem;
+    margin-right: 1rem;
+    text-align: right;
+    color: hsl(var(--muted-foreground) / 0.5);
+    user-select: none;
+  }
+
+  @media (max-width: 768px) {
+    .code-header {
+      padding: 0.6rem 0.75rem;
+    }
+
+    .filename {
+      font-size: 0.8rem;
+    }
+
+    .copy-text {
+      display: none;
+    }
+
+    .code-content {
+      max-height: 400px;
+    }
+
+    .code-content :global(pre) {
+      padding: 1rem !important;
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<script>
+  // Copy to clipboard functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyButtons = document.querySelectorAll('.copy-btn');
+
+    copyButtons.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const code = btn.getAttribute('data-code');
+        if (!code) return;
+
+        try {
+          await navigator.clipboard.writeText(code);
+          const textSpan = btn.querySelector('.copy-text');
+          const originalText = textSpan?.textContent;
+
+          if (textSpan) {
+            textSpan.textContent = 'Copied!';
+            setTimeout(() => {
+              textSpan.textContent = originalText || 'Copy';
+            }, 2000);
+          }
+        } catch (err) {
+          console.error('Failed to copy code:', err);
+        }
+      });
+    });
+  });
+</script>

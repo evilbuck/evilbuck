@@ -8,6 +8,13 @@
     <meta name="generator" content={Astro.generator} />
     <title>{Astro.props.title}</title>
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+    ></script>
+    <link
       href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     >
@@ -19,6 +26,7 @@
         <div class="nav-links">
           <a href="/" class="nav-link">Resume</a>
           <a href="/projects" class="nav-link">Projects</a>
+          <a href="/code-samples" class="nav-link">Code Samples</a>
         </div>
       </div>
     </nav>
