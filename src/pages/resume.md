@@ -8,10 +8,6 @@
 
 **Staff/Lead Engineer with 20+ years of experience** in system architecture, problem solving, and building resilient, scalable platforms. Proven record of architecting multi-tenant systems, scaling pipelines ×1000, and cutting cloud costs by 86% while improving stability and delivery velocity. Recent work includes hands-on **AI/LLM integration** and architecting AI-driven products. Recognized for translating business needs into technical strategy and mentoring engineers while driving pragmatic solutions under constraints.
 
-## Summary
-
-**Staff/Lead Engineer with 20+ years of experience** delivering scalable software, distributed systems, and high-performing engineering organizations. Expert at bridging deep IC execution with strategic leadership. Proven track record in **architecting multi-tenant platforms, cutting cloud costs by 86%, scaling pipelines ×1000, and mentoring engineers into leadership roles.**
-
 ---
 
 ## Skills
