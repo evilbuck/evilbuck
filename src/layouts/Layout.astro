@@ -13,6 +13,15 @@
     >
   </head>
   <body>
+    <nav class="site-nav">
+      <div class="nav-container">
+        <a href="/" class="nav-brand">Buckley Robinson</a>
+        <div class="nav-links">
+          <a href="/" class="nav-link">Resume</a>
+          <a href="/projects" class="nav-link">Projects</a>
+        </div>
+      </div>
+    </nav>
     <slot />
   </body>
 </html>
@@ -81,5 +90,69 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: hsl(var(--surface));
+    border-bottom: 1px solid hsl(var(--border));
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+  }
+
+  .nav-brand {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: hsl(var(--foreground));
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    color: hsl(var(--subtle));
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus {
+    color: hsl(var(--accent));
+    border-bottom-color: hsl(var(--accent));
+  }
+
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: 0 1rem;
+    }
+
+    .nav-brand {
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      gap: 1.5rem;
+    }
   }
 </style>

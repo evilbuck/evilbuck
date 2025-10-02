@@ -1,0 +1,105 @@
+---
+export interface Props {
+  className?: string;
+  minBubbles?: number;
+  maxBubbles?: number;
+  minSize?: number;
+  maxSize?: number;
+  minSpeed?: number;
+  maxSpeed?: number;
+  colors?: string[];
+  opacity?: number;
+}
+
+const {
+  className = '',
+  minBubbles = 8,
+  maxBubbles = 16,
+  minSize = 20,
+  maxSize = 60,
+  minSpeed = 6,
+  maxSpeed = 12,
+  colors = ['hsl(var(--accent) / 0.3)', 'hsl(var(--muted) / 0.4)', 'hsl(var(--subtle) / 0.2)'],
+  opacity = 0.7
+} = Astro.props;
+
+// Generate random configuration for each bubble
+const bubbleCount = Math.floor(Math.random() * (maxBubbles - minBubbles + 1)) + minBubbles;
+
+// Generate bubble configurations server-side
+const bubbles = Array.from({ length: bubbleCount }, (_, i) => {
+  const size = Math.random() * (maxSize - minSize) + minSize;
+  const left = Math.random() * 100;
+  const delay = Math.random() * 5;
+  const duration = Math.random() * (maxSpeed - minSpeed) + minSpeed;
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  
+  return {
+    id: i,
+    size: Math.round(size),
+    left: Math.round(left),
+    delay: delay.toFixed(2),
+    duration: duration.toFixed(2),
+    color
+  };
+});
+---
+
+<div class={`bubble-background ${className}`}>
+  <div class="bubble-container">
+    {bubbles.map((bubble) => (
+      <div
+        class="bubble"
+        style={`width: ${bubble.size}px; height: ${bubble.size}px; left: ${bubble.left}%; bottom: -${bubble.size}px; animation-delay: ${bubble.delay}s; animation-duration: ${bubble.duration}s; background: ${bubble.color};`}
+      />
+    ))}
+  </div>
+</div>
+
+<style>
+  .bubble-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .bubble-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid hsl(var(--border) / 0.3);
+    animation: float-up infinite ease-in-out;
+  }
+
+  @keyframes float-up {
+    0% {
+      transform: translateY(0) scale(0.8);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(-50vh) scale(1.1);
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.4;
+    }
+    100% {
+      transform: translateY(-100vh) scale(0.8);
+      opacity: 0;
+    }
+  }
+</style>

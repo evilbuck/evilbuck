@@ -1,0 +1,281 @@
+---
+import { projectsData } from '../data/projects';
+import BubbleBackground from './BubbleBackground.astro';
+---
+
+<main class="projects-container">
+  <header class="projects-header">
+    <h1 class="projects-title">Code Samples & Projects</h1>
+    <p class="projects-subtitle">A showcase of full-stack applications, platforms, and technical solutions I've built over the years.</p>
+  </header>
+
+  <div class="projects-grid">
+    {projectsData.map((project) => (
+      <article class="project-card">
+        <div class="project-image-container">
+          <BubbleBackground
+            minBubbles={6}
+            maxBubbles={12}
+            minSize={15}
+            maxSize={45}
+            minSpeed={4}
+            maxSpeed={8}
+            colors={[
+              'hsl(var(--accent) / 0.3)',
+              'hsl(var(--muted) / 0.4)',
+              'hsl(var(--subtle) / 0.2)'
+            ]}
+            opacity={0.6}
+          />
+          {project.featured && (
+            <span class="project-badge">Featured</span>
+          )}
+        </div>
+
+        <div class="project-content">
+          <h3 class="project-title">{project.title}</h3>
+          <p class="project-description">{project.description}</p>
+
+          <div class="project-tech">
+            {project.technologies.map((tech) => (
+              <span class="tech-tag">{tech}</span>
+            ))}
+          </div>
+
+          <div class="project-links">
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" class="project-link primary">
+                View Code
+              </a>
+            )}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</main>
+
+<style>
+  .projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem;
+    min-height: 100vh;
+    background: hsl(var(--background));
+  }
+
+  .projects-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+  }
+
+  .projects-title {
+    font-size: 2.25rem;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .projects-subtitle {
+    font-size: 1rem;
+    color: hsl(var(--muted-foreground));
+    font-family: var(--font-serif);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.8;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-card {
+    background: hsl(var(--surface));
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(36, 24, 18, 0.06);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(36, 24, 18, 0.08);
+  }
+
+  .project-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: hsl(var(--muted));
+    border-radius: 20px 20px 0 0;
+  }
+
+  :global(.project-image-container .bubble-background) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .project-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: hsla(var(--surface), 0.9);
+    color: hsl(var(--foreground));
+    padding: 0.2rem 0.6rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .project-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    color: hsl(var(--subtle));
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .project-description {
+    color: hsla(var(--foreground), 0.8);
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-tag {
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-family: var(--font-sans);
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+  }
+
+  .project-link {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    border: 2px solid transparent;
+    text-align: center;
+    flex: 1;
+  }
+
+  .project-link:not(.primary) {
+    background: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    border-color: hsl(var(--border));
+  }
+
+  .project-link:not(.primary):hover {
+    background: hsl(var(--accent-soft));
+    color: hsl(var(--accent));
+    border-color: hsl(var(--accent));
+  }
+
+  .project-link.primary {
+    background: hsl(var(--accent));
+    color: white;
+  }
+
+  .project-link.primary:hover {
+    background: hsl(18, 68%, 45%);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    .projects-container {
+      padding: 1rem 1rem 4rem;
+    }
+
+    .projects-header {
+      margin-bottom: 2rem;
+      padding: 1.5rem 0;
+    }
+
+    .projects-title {
+      font-size: 2.25rem;
+    }
+
+    .projects-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-image-container {
+      height: 180px;
+    }
+
+    .project-links {
+      flex-direction: column;
+    }
+
+    .project-link {
+      padding: 0.875rem 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .projects-title {
+      font-size: 2rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+    }
+  }
+</style>
